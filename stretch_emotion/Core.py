@@ -49,10 +49,17 @@ class Core:
         return True 
 
     # 残タスク: 精度によるデータ使用、もしくは破棄するような関数も作る必要ある？
+    # 多分, こんな感じ 感情ごとでやる必要があるか、モデル単位でいいかは検出器の結果を見て要検討
+    # def judgeModelThreshold(self, threshold, accuracy):
+    #     if threshold > accuracy: return False
+    # return True
+    
+
     # 感情モデル変換全体の関数
+    # def stretchEmotion(self, model_name, emotion_id, emotion="", accuracy=0):
     def stretchEmotion(self, model_name, emotion_id, emotion=""):
         # 感情モデルの存在確認
-        query = f"SELECT model_id FROM emotion_models WHERE model_name = '{model_name}';"
+        query = f"SELECT model_id, threshold FROM emotion_models WHERE model_name = '{model_name}';"
         result = self.db.fetchSingleQuery(query)
         if len(result) == 0:
             query = ("INSERT INTO emotion_models (model_name) "
@@ -62,6 +69,9 @@ class Core:
                 ") LIMIT 1;"
             )
             if(not self.db.executeQuery(query)): return "Add Emotion Model Error"
+
+        # 精度が閾値より下の場合値を使わずに処理を終了
+        # if not judgeModelThreshold(result[1], accuracy): return None
 
         # 感情モデル内の感情の存在確認
         query = f"SELECT emotion_id FROM target_emotions WHERE model_name = '{model_name}' AND emotion_id = '{emotion_id}';"
