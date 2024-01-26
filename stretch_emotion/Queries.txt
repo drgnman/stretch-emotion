@@ -16,6 +16,7 @@ CREATE TABLE `emotion_models` (
 CREATE TABLE `target_emotions` (
   `model_name` varchar(10) NOT NULL,
   `emotion_id` int NOT NULL,
+  `emotion` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`model_name`,`emotion_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
