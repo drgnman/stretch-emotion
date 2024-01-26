@@ -7,7 +7,8 @@ class Core:
         self.db.createDBConnection()
 
     # DB上に設定された変換ルールに則って実際に変換するコード
-    # 戻り値: 変換後の感情ID、感情名
+    # 変換はMySQL上で対応する基礎感情コードを取得することで行なっている
+    # 戻り値: 変換後の感情ID(emotion_id)、感情名(emotion)
     def emotionTransfer(self, model_name, emotion_id):
         query = (
             "SELECT be.id, " 
@@ -24,8 +25,8 @@ class Core:
             f"    em.model_name = '{model_name}' AND te.emotion_id = {emotion_id};"
         )
         result = self.db.fetchSingleQuery(query)
-        emotion_id, emotion_name = result
-        return emotion_id, emotion_name
+        emotion_id, emotion = result
+        return emotion_id, emotion
 
     # 感情変換のルールがDB上になかった場合にDB上に新しく変換ルールを追加するコード
     # モデル自体の追加は処理本体で行わせる
