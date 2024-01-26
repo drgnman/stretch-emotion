@@ -1,0 +1,36 @@
+create database emotions;
+
+-- 本実装によって緩衝役となる基礎感情
+CREATE TABLE `base_emotions` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `emotion` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `emotion_models` (
+  `model_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `model_name` varchar(10) DEFAULT NULL,
+  PRIMARY KEY (`model_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `target_emotions` (
+  `model_name` varchar(10) NOT NULL,
+  `emotion_id` int NOT NULL,
+  PRIMARY KEY (`model_name`,`emotion_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ルールベースでモデルごとのidをbase_idに変換するためのテーブル
+CREATE TABLE `rule` (
+  `model_id` int unsigned NOT NULL,
+  `base_id` int NOT NULL,
+  `emotion_id` int NOT NULL,
+  PRIMARY KEY (`model_id`,`base_id`,`emotion_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- 20何分類くらいある感情とbase_emotionの紐付けを管理する
+CREATE TABLE `rassel_emotions_rule` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `emotions` varchar(10) DEFAULT NULL,
+  `base_id` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
