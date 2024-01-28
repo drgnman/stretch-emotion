@@ -59,7 +59,9 @@ class Core:
     # def stretchEmotion(self, model_name, emotion_id, emotion="", accuracy=0):
     def stretchEmotion(self, model_name, emotion_id, emotion=""):
         # 感情モデルの存在確認
-        query = f"SELECT model_id, threshold FROM emotion_models WHERE model_name = '{model_name}';"
+        # thresholdはまだ未対応
+        # query = f"SELECT model_id, threshold FROM emotion_models WHERE model_name = '{model_name}';"
+        query = f"SELECT model_id FROM emotion_models WHERE model_name = '{model_name}';"
         result = self.db.fetchSingleQuery(query)
         if len(result) == 0:
             query = ("INSERT INTO emotion_models (model_name) "
