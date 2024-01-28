@@ -31,7 +31,7 @@ CREATE TABLE `rule` (
 -- 20何分類くらいある感情とbase_emotionの紐付けを管理する
 CREATE TABLE `rassel_emotions_rule` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `emotions` varchar(10) DEFAULT NULL,
+  `emotion` varchar(10) DEFAULT NULL,
   `base_id` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
