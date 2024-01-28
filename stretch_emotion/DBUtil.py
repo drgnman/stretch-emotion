@@ -6,7 +6,7 @@ class DBUtil:
     self.database = 'DB name'
     self.user = 'user name'
     self.password = 'password'
-    self.port = 'port(int)',
+    self.port = 'port (int)'
     self.connector = None
     self.cursor = None
 
