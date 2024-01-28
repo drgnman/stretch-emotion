@@ -40,7 +40,7 @@ class Core:
         if (not self.db.executeQuery(query)): return "Add Emotion Error"
 
         query = ("INSERT INTO rule (model_id, base_id, emotion_id) "
-            f"SELECT em.model_id, (SELECT base_id FROM rassel_emotions_rule WHERE emotions = '{emotion}') AS base_id, {emotion_id} "
+            f"SELECT em.model_id, (SELECT base_id FROM rassel_emotions_rule WHERE emotion = '{emotion}') AS base_id, {emotion_id} "
             "FROM emotion_models em "
             f"WHERE em.model_name = '{model_name}';"
         )
