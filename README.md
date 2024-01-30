@@ -69,7 +69,7 @@
   - base_id (対応するbase_emotion_id)
 
 ## Core.pyについて
-- stretchEmotionモジュールを呼び出す
+- stretchEmotion関数を呼び出す
 - DB上に予め登録されたルールに従って感情変換された結果を返す
   - 引数
     - model_name(使用元の感情推定モデル名)
@@ -81,8 +81,8 @@
     - emotion_id
     - emotion_name
 
-- 内部的なヘルパーモジュールとして以下のものを持つ
+- 内部的なヘルパー関数として以下のものを持つ
   - emotionTransfer
-    - 実際の感情変換を行うモジュール
+    - 実際の感情変換を行う関数
   - addRuleEmotionTransfer
-    - 既存のルールがDB上に存在しない場合、rassel_emotions_ruleとの対応に従って新しくルールを追加するモジュール
+    - 既存のルールがDB上に存在しない場合、rassel_emotions_ruleとの対応に従って新しくルールを追加する関数
