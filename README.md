@@ -73,8 +73,8 @@
 - DB上に予め登録されたルールに従って感情変換された結果を返す
   - 引数
     - model_name(使用元の感情推定モデル名)
-    - emotion_id(使用元の感情推定モデルが出したemotion_id)
     - emotion(使用元の感情推定モデルが出した感情(テキスト))
+    - emotion_id(使用元の感情推定モデルが出したemotion_id)
     - accuracy(もし精度で使うか判断するなら使う)
 
   - 戻り値 (現状は２変数で戻す)
@@ -86,3 +86,5 @@
     - 実際の感情変換を行う関数
   - addRuleEmotionTransfer
     - 既存のルールがDB上に存在しない場合、rassel_emotions_ruleとの対応に従って新しくルールを追加する関数
+  - emotionTransferW2V
+    - 予め4象限に対応するする比較単語("excited", "angry", "sad", "serene")と入力された感情単語のコサイン類似度を比較して一番大きい値の象限番号と比較単語を返す
