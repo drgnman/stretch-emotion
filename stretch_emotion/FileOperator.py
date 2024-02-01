@@ -3,7 +3,7 @@ class FileOperator:
     def readCSVFile(self, filename):
         with open(filename, mode='r', newline='', encoding='utf-8') as file:
             # csv.readerを使用してファイルを読み込む。delimiter='\t' でタブ区切りを指定
-            reader = csv.reader(file, delimiter='\t')
+            reader = csv.reader(file, delimiter=',')
             next(reader)
             # ファイルの内容をリストに変換
             return list(reader)

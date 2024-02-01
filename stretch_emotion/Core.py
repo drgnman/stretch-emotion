@@ -60,7 +60,7 @@ class Core:
             if (max_similarity < similarity):
                 max_similarity = similarity 
                 index = i
-        return index+1, self.base_quadrants[index]
+        return str(index+1), self.base_quadrants[index]
 
     # 残タスク: 精度によるデータ使用、もしくは破棄するような関数も作る必要ある？
     # 多分, こんな感じ 感情ごとでやる必要があるか、モデル単位でいいかは検出器の結果を見て要検討
