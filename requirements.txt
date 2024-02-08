@@ -1,2 +1,10 @@
 mysql-connector-python
 gensim
+spacy
+sumy
+ginza
+summarization
+mecab-python3
+unidic-lite
+nltk
+ja-ginza

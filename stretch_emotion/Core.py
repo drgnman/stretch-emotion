@@ -9,7 +9,6 @@ class Core:
         self.model = api.load("word2vec-google-news-300")
         # self.model = gensim.models.Word2Vec.load("/Users/drgnman/Downloads/latest-ja-word2vec-gensim-model/word2vec.gensim.model")
         self.base_quadrants = ["excited", "angry", "sad", "serene"] # 1象限、2象限, 3象限, 4象限
-
     # DB上に設定された変換ルールに則って実際に変換するコード
     # 変換はMySQL上で対応する基礎感情コードを取得することで行なっている
     # 戻り値: 変換後の感情ID(emotion_id)、感情名(emotion)
@@ -55,8 +54,14 @@ class Core:
     # word2vecを用いたコサイン類似度から4象限の推定を行う関数
     def emotionTransferW2V(self, emotion_name):
         index, max_similarity = 0, 0.0
+        if (emotion_name == "Joy" or emotion_name == "joyful"):
+          return str(index+1), self.base_quadrants[1]
+        if (emotion_name == "surprised"):
+           return str(index+1), self.base_quadrants[0] 
+        u_emotion_name = emotion_name.lower()
         for i in range(len(self.base_quadrants)):
-            similarity = self.model.similarity(emotion_name, self.base_quadrants[i])
+            similarity = self.model.similarity(u_emotion_name, self.base_quadrants[i])
+            # print("emotion: ", self.base_quadrants[i], ",similarity: ", similarity)
             if (max_similarity < similarity):
                 max_similarity = similarity 
                 index = i
